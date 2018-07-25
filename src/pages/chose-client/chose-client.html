@@ -1,0 +1,57 @@
+
+  <ion-header style="max-height: 60px;" >
+  <ion-navbar>
+    <button ion-button icon-only menuToggle>
+          <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>
+      <ion-icon name="briefcase">&nbsp;&nbsp;</ion-icon>Lista de Clientes
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <div>
+    <p><ion-icon name="person">&nbsp;&nbsp;</ion-icon><strong>COLETOR:&nbsp;</strong>  {{ name_coletor }} </p>
+    <br />
+    <hr class="subhr">
+    <br />
+  </div>
+
+  <ion-list>
+    <ion-item *ngFor="let cl of listClient" (click)="ChoseClient(cl)" text-wrap >
+      {{cl.nome_cliente}}
+    </ion-item>
+  </ion-list>
+</ion-content>
+
+<!--
+<ion-header>
+
+  <ion-navbar>
+    <button ion-button icon-only menuToggle>
+          <ion-icon name="menu"></ion-icon>
+    </button>
+
+    <ion-title>Lista de Clientes</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+  <div>
+    <p><ion-icon name="person">&nbsp;&nbsp;</ion-icon><strong>COLETOR:</strong>  {{ name_coletor }} </p>
+    <br />
+    <hr style="height:2px; border:none; color:#000; background-color:#000; margin-top: 0px; margin-bottom: 0px;"/>
+    <br/>
+  </div>
+
+  <ion-list>
+    <ion-item *ngFor="let cl of listClient" (click)="ChoseClient(cl)" text-wrap style="margin-top: 10px;">
+      {{cl.nome_cliente}}
+    </ion-item>
+  </ion-list>
+</ion-content>
+-->

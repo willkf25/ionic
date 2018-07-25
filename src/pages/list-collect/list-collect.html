@@ -1,0 +1,35 @@
+<ion-header>
+
+    <ion-navbar>
+      <!--
+      <button ion-button icon-only menuToggle>
+            <ion-icon name="menu"></ion-icon>
+      </button>-->
+
+      <ion-title><ion-icon name="clipboard">&nbsp;&nbsp;</ion-icon>Lista de Coletas</ion-title>
+    </ion-navbar>
+
+  </ion-header>
+
+  <br/>
+  <ion-content padding>
+
+    <div>
+      <p><ion-icon name="person">&nbsp;&nbsp;</ion-icon><strong>COLETOR:&nbsp;</strong>  {{ name_coletor }} </p>
+      <p><ion-icon name="briefcase"></ion-icon>&nbsp;&nbsp;<strong>CLIENTE:&nbsp;</strong>  {{ name_client }} </p>
+      <p><ion-icon name="flask">&nbsp;&nbsp;</ion-icon><strong>TIPO DE COLETA:&nbsp;</strong> {{ type_name }} </p>
+      <p><ion-icon name="browsers">&nbsp;&nbsp;</ion-icon><strong>MATRIZ:&nbsp;</strong>{{ name_matriz }}</p>
+    </div>
+
+    <br><hr>
+
+    <ion-list>
+        <ion-item *ngFor="let cl of list_collect" (click)="ChoseClient(cl)" text-wrap >
+          {{cl.nome_ponto}}
+          <span *ngIf="cl.collected == 1"> - &nbsp; <ion-icon style="color:green" name="checkmark-circle"></ion-icon></span>
+        </ion-item>
+    </ion-list>
+
+
+
+</ion-content>

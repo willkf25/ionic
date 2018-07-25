@@ -1,0 +1,24 @@
+
+<ion-header>
+
+  <ion-navbar>
+      <button ion-button icon-only menuToggle>
+          <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title><ion-icon name="sync">&nbsp;&nbsp;</ion-icon> Sincronização</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-list>
+    <br />
+    <button ion-button full round class="btAcessar btError" (click)="ClearListCollected();"><ion-icon name="trash">&nbsp;&nbsp;</ion-icon>Limpar dados coletados</button>
+    <br />
+    <hr>
+    <br />
+    <!-- btAcessar -->
+    <button ion-button full round class="btAcessar btOk" (click)="sendDatas();"><ion-icon name="checkmark">&nbsp;&nbsp;</ion-icon>Enviar dados</button>
+  </ion-list>
+</ion-content>

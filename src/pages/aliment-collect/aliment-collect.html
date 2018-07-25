@@ -1,0 +1,103 @@
+
+<ion-header>
+
+  <ion-navbar>
+    <ion-title><ion-icon name="flask">&nbsp;&nbsp;</ion-icon> Coleta de Alimentos</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+    
+  <p><strong>Cliente :</strong> {{agenda.nome_cliente}} <br /></p>
+  <p><strong>Ponto de Coleta :</strong> {{agenda.nome_ponto}}</p>
+  <br />
+  <hr><br />
+
+    <strong><ion-icon name="share-alt">&nbsp;&nbsp;
+    </ion-icon>Descrição da Amostra :&nbsp;<span class="asterisco">*</span></strong>
+    <ion-list>
+
+      <ion-item>
+        <ion-textarea placeholder="Amostra" [(ngModel)]="Camostra"></ion-textarea>
+      </ion-item>
+    </ion-list>
+
+    <strong><ion-icon name="share-alt">&nbsp;&nbsp;</ion-icon>{{labelData_fabricacao_placeholder}}:</strong>
+    <ion-list>
+      <ion-item> <ion-input type="text" placeholder="Ex: 01/01/2018, Janeiro/2018" [(ngModel)]="Cfabricacao"></ion-input> </ion-item>
+    </ion-list>
+
+    <strong><ion-icon name="share-alt">&nbsp;&nbsp;</ion-icon>Data de Validade:</strong>
+    <ion-list>
+      <ion-item> <ion-input type="text" placeholder="Ex: 01/01/2018, Janeiro/2018" [(ngModel)]="Cvalidade"></ion-input> </ion-item>
+    </ion-list>
+
+    <strong><ion-icon name="share-alt">&nbsp;&nbsp;</ion-icon>Marca :</strong>
+    <ion-list>
+      <ion-item>
+        <ion-input type="text" placeholder="Nome da marca" [(ngModel)]="Cmarca"></ion-input>
+      </ion-item>
+    </ion-list>
+
+    <strong><ion-icon name="share-alt">&nbsp;&nbsp;</ion-icon>Fornecedor :</strong>
+    <ion-list>
+      <ion-item>
+        <ion-input type="text" placeholder="Nome do Fornecedor" [(ngModel)]="Cfornecedor"></ion-input>
+      </ion-item>
+    </ion-list>
+
+    <strong><ion-icon name="share-alt">&nbsp;&nbsp;</ion-icon>Local de Amostragem :</strong>
+    <ion-list>
+      <ion-item>
+        <ion-input type="text" placeholder="Nome do Local de Amostragem" [(ngModel)]="Clocalamostragem"></ion-input>
+      </ion-item>
+    </ion-list>
+
+    <strong><ion-icon name="share-alt">&nbsp;&nbsp;</ion-icon>Lote :</strong>
+    <ion-list>
+      <ion-item>
+        <ion-input type="text" placeholder="N° do lote" [(ngModel)]="Clote"></ion-input>
+      </ion-item>
+    </ion-list>
+
+    <strong><ion-icon name="share-alt">&nbsp;&nbsp;</ion-icon>Temperatura da amostra (°C) : </strong>
+    <ion-list>
+      <ion-item>
+        <ion-input type="number" placeholder="Ex: 12, 5, -10" [(ngModel)]="Ctempamostra"></ion-input>
+      </ion-item>
+    </ion-list>
+
+      <strong><ion-icon name="share-alt">&nbsp;&nbsp;</ion-icon>Temp. do branco de temp. na coleta (°C) : </strong>
+      <ion-list>
+        <ion-item>
+          <ion-input type="number" placeholder="Ex: 12, 5, -10" [(ngModel)]="Ctemp_branco"></ion-input>
+        </ion-item>
+      </ion-list>
+
+    <strong><ion-icon name="share-alt">&nbsp;&nbsp;</ion-icon>Observações:</strong>
+    <ion-list>
+      <ion-item>
+        <ion-textarea placeholder="Observações...." [(ngModel)]="Cobs"></ion-textarea>
+      </ion-item>
+    </ion-list>
+
+    <strong><ion-icon name="share-alt">&nbsp;&nbsp;</ion-icon>Data da amostragem: &nbsp;<span class="asterisco">*</span></strong>
+    <ion-list>
+      <ion-item>
+          <ion-input type="datetime-local" [(ngModel)]="dataDaColeta"></ion-input>
+        </ion-item>
+    </ion-list>
+
+    <strong><ion-icon name="share-alt">&nbsp;&nbsp;</ion-icon>Identificador de Amostra :&nbsp;<span class="asterisco">*</span> </strong>
+    <ion-list>
+      <ion-item>
+        <ion-input type="number" placeholder="Ex: 1,2,3,4..." [(ngModel)]="CidAmostra"></ion-input>
+      </ion-item>
+    </ion-list>
+
+      <button ion-button full round  (click)="Salvar();" *ngIf="DataColetado == 0"><ion-icon name="checkmark-circle">&nbsp;&nbsp;</ion-icon>Salvar</button>
+
+      <button ion-button full round  *ngIf="DataColetado == 1" (click)="update(idArray);"><ion-icon name="refresh">&nbsp;&nbsp;</ion-icon>Salvar</button>
+</ion-content>

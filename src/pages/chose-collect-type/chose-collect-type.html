@@ -1,0 +1,33 @@
+<ion-header>
+
+    <ion-navbar>
+      <button ion-button icon-only menuToggle>
+            <ion-icon name="menu"></ion-icon>
+      </button>
+
+      <ion-title><ion-icon name="flask">&nbsp;&nbsp;</ion-icon>Tipo de Coleta</ion-title>
+    </ion-navbar>
+
+  </ion-header>
+
+  <br/>
+  <ion-content padding>
+
+    <div>
+      <p><ion-icon name="person">&nbsp;&nbsp;</ion-icon><strong>COLETOR:&nbsp;</strong>  {{ name_coletor }} </p>
+      <p><ion-icon name="briefcase">&nbsp;&nbsp;</ion-icon><strong>CLIENTE:&nbsp;</strong>  {{ name_client }} </p>
+    </div>
+    
+    <br><hr>
+    
+    <ion-list>
+      <ion-item (click)="chose_category(6)" *ngIf="collect_aliment_beneficiado > 0">Alimentos Beneficiados</ion-item>
+      <ion-item (click)="chose_category(4)" *ngIf="collect_aliment_fabricado > 0">Alimentos Fabricados</ion-item>
+      <ion-item (click)="chose_category(5)" *ngIf="collect_aliment_preparado > 0">Alimentos Preparados</ion-item>
+      <ion-item (click)="chose_category(1)" *ngIf="collect_watter > 0">Amostras de Água</ion-item>
+      <ion-item (click)="chose_category(2)" *ngIf="collect_cosmetic > 0">Cosméticos / Higiênie</ion-item>
+      <ion-item (click)="chose_category(3)" *ngIf="collect_swab > 0">Swabs / Lav. de Emb.</ion-item>
+    </ion-list>
+
+
+  </ion-content>

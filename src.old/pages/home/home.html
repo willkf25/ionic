@@ -1,0 +1,25 @@
+<ion-content class="ion-content" >
+  <div style="padding-top: 10%;">
+    <img src="assets/img/logo.png" width="40%;">
+  </div>
+
+  <p style="padding-top: 10px;">Entre com seu usuário e senha</p>
+  <br />
+    <ion-item>
+      <ion-label floating>Usuário</ion-label>
+      <ion-input type="email" [(ngModel)]="user"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating>Senha</ion-label>
+      <ion-input type="password" [(ngModel)]="pass"></ion-input>
+    </ion-item>
+<br />
+
+<button ion-button round style="width: 70%; height: 50px" class="btAcessar" (click)="login()">
+  <ion-icon name="md-lock"></ion-icon>&nbsp;
+  Fazer Login
+
+</button>
+
+</ion-content>

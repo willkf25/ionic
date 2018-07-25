@@ -1,0 +1,26 @@
+<ion-menu [content]="myContent">
+    <!-- *** Conteudo do menu - Augusto Furlan *** -->
+    <ion-header>
+        <ion-toolbar>
+            <ion-title><img src="assets/img/logo-vertical.png" width="70%;"></ion-title>
+        </ion-toolbar>
+    </ion-header>
+
+    <ion-content>
+        <ion-list>
+            <button ion-item *ngFor="let p of pages" (click)="OpenPage(p)" menuClose>
+
+              <ion-icon *ngIf="p.title=='Clientes'" style="color:dodgerblue" ios="ios-contact" md="md-contact"></ion-icon>
+              <ion-icon *ngIf="p.title=='Sincronizar'" style="color:forestgreen" ios="ios-sync" md="md-sync"></ion-icon>
+              <ion-icon *ngIf="p.title=='Logout'" style="color:firebrick" ios="ios-log-out" md="md-log-out"></ion-icon>
+
+              &nbsp;  {{ p.title }}
+            </button>
+
+
+
+        </ion-list>
+    </ion-content>
+</ion-menu>
+
+<ion-nav #myContent [root]="rootPage"></ion-nav>

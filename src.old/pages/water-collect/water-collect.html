@@ -1,0 +1,173 @@
+
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Coleta de Água</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+    <p><strong>A coleta de água é do cliente {{agenda.nome_cliente}} - {{agenda.nome_ponto}}</strong></p>
+
+  <!-- -->
+  <strong>1) Amostra</strong>
+    <ion-list>
+      <ion-item>
+        <ion-textarea placeholder="Amostra" [(ngModel)]="Cagua_amostra"></ion-textarea>
+      </ion-item>
+    </ion-list>
+
+    <strong>2) De qual fornecedor?</strong>
+    <ion-list>
+      <ion-item>
+        <ion-label>Fornecedor</ion-label>
+        <ion-input type="text" [(ngModel)]="Cagua_fornecedor"></ion-input>
+      </ion-item>
+    </ion-list>
+
+    <strong>3) Qual a data de envase?</strong>
+    <ion-list>
+      <ion-item>
+        <ion-label></ion-label>
+        <ion-input type="datetime-local" [(ngModel)]="Cagua_data_envase"  (ionChange)="alterFieldEnvase($event)"></ion-input>
+      </ion-item>
+    </ion-list>
+
+
+    <strong>4) {{labelData_fabricacao}}</strong>
+    <ion-list>
+      <ion-item>
+        <ion-label>{{labelData_fabricacao_placeholder}}</ion-label>
+        <ion-input type="text" [(ngModel)]="Cagua_fabricacao"  (ionChange)="alterFieldFabricacao($event)"></ion-input>
+      </ion-item>
+    </ion-list>
+
+    <strong>5) Qual a data de validade?</strong>
+    <ion-list>
+      <ion-item>
+        <ion-label>Validade</ion-label>
+        <ion-input type="text" [(ngModel)]="Cagua_validade"></ion-input>
+      </ion-item>
+    </ion-list>
+
+    <strong>6) Qual a temperatura da amostra?  (°C)  *</strong>
+    <ion-list>
+      <ion-item>
+        <ion-label>Temperatura</ion-label>
+        <ion-input type="number" [(ngModel)]="Cagua_tempamostra"></ion-input>
+      </ion-item>
+    </ion-list>
+
+    <strong>7) Temperatura do branco de temperatura na coleta (°C)</strong>
+    <ion-list>
+      <ion-item>
+      <ion-label>Temperatura do Branco</ion-label>
+        <ion-input type="number" [(ngModel)]="Ctemp_branco"></ion-input>
+      </ion-item>
+    </ion-list>
+
+  <strong>8) Características do dosador de cloro?</strong>
+  <ion-list>
+    <ion-item>
+      <ion-label>Dosador de cloro</ion-label>
+      <ion-select [(ngModel)]="Cagua_dosador" multiple="false" okText="OK" cancelText="Cancelar">
+        <ion-option *ngFor="let item of dosador" [value]="item.id" text-wrap>{{ item.nome }}</ion-option>
+      </ion-select>
+    </ion-item>
+    <ion-item *ngIf="Cagua_dosador == 0">
+      <ion-label>Outro</ion-label>
+      <ion-input type="text" [(ngModel)]="Cagua_dosadorOutro"></ion-input>
+    </ion-item>
+  </ion-list>
+
+  <hr /><br/>
+
+  <strong *ngIf="Cagua_dosador == 'COM CLORO'">9) Qual o cloro residual livre ?</strong>
+    <ion-list *ngIf="Cagua_dosador == 'COM CLORO'">
+      <ion-item>
+        <ion-label>Cloro Livre</ion-label>
+        <ion-input type="number" [(ngModel)]="Cagua_clorolivre"></ion-input>
+      </ion-item>
+    </ion-list>
+
+
+  <strong>9) Qual a procedência da água?</strong>
+  <ion-list>
+    <ion-item>
+      <ion-label>Procedência</ion-label>
+      <ion-select [(ngModel)]="Cagua_procedencia" multiple="false" okText="OK" cancelText="Cancelar">
+        <ion-option *ngFor="let item of procedencia" [value]="item.id" text-wrap>{{ item.nome }}</ion-option>
+      </ion-select>
+    </ion-item>
+    <ion-item *ngIf="Cagua_procedencia == 0">
+      <ion-label>Outra</ion-label>
+      <ion-input type="text" [(ngModel)]="Cagua_procedenciaOutro"></ion-input>
+    </ion-item>
+  </ion-list>
+
+  <hr *ngIf="Cagua_procedencia != 0" /><br/>
+
+  <strong>10) Tratamento?</strong>
+  <ion-list>
+    <ion-item>
+      <ion-label>Tratamento</ion-label>
+      <ion-select [(ngModel)]="Cagua_tratamento" multiple="false" okText="OK" cancelText="Cancelar" >
+        <ion-option *ngFor="let item of tratamento" [value]="item.id" text-wrap>{{ item.nome }}</ion-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item *ngIf="Cagua_tratamento == 0">
+      <ion-label>Outro</ion-label>
+      <ion-input type="text" [(ngModel)]="Cagua_tratamentoOutro"></ion-input>
+    </ion-item>
+  </ion-list>
+
+  <hr *ngIf="Cagua_tratamento != 0 " /><br/>
+
+  <strong>11) Qual a utilização?</strong>
+  <ion-list>
+    <ion-item>
+      <ion-label>Uma amostra de</ion-label>
+      <ion-select [(ngModel)]="Cutilizacao" multiple="false" okText="OK" cancelText="Cancelar">
+        <ion-option text-wrap *ngFor="let item of utilizacao" [value]="item.id">{{ item.nome }}</ion-option>
+      </ion-select>
+    </ion-item>
+    <ion-item *ngIf="Cutilizacao == 0">
+      <ion-label>Outra</ion-label>
+      <ion-input type="text" [(ngModel)]="CutilizacaoOutro"></ion-input>
+    </ion-item>
+  </ion-list>
+
+  <hr *ngIf="Cutilizacao != 0 " /><br/>
+
+  <strong>12) Observação</strong>
+  <ion-list>
+  <ion-item>
+    <ion-textarea placeholder="Observação" [(ngModel)]="Cagua_obs"></ion-textarea>
+  </ion-item>
+</ion-list>
+
+<strong>13) Data da amostra</strong>
+    <ion-list>
+      <ion-item>
+        <ion-label>Data</ion-label>
+          <ion-input type="datetime-local" [(ngModel)]="dataDaColeta"></ion-input>
+        </ion-item>
+    </ion-list>
+
+<strong>14)Identificador de Amostra</strong>
+    <ion-list>
+      <ion-item>
+        <ion-label>ID *</ion-label>
+        <ion-input type="number" [(ngModel)]="Cagua_id_amostra"></ion-input>
+      </ion-item>
+    </ion-list>
+
+  <button ion-button full round (click)="Salvar();" *ngIf="DataColetado == 0"> <ion-icon name="checkmark-circle">&nbsp;&nbsp;</ion-icon>Salvar</button>
+
+  <button ion-button full round *ngIf="DataColetado == 1" (click)="update(idArray);"><ion-icon name="refresh">&nbsp;&nbsp;</ion-icon>Salvar</button>
+
+
+</ion-content>

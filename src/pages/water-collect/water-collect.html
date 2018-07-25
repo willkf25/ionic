@@ -1,0 +1,168 @@
+
+<ion-header>
+
+  <ion-navbar>
+    <ion-title><ion-icon name="flask">&nbsp;&nbsp;</ion-icon>Coleta de Água</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+    <p><strong>Cliente:</strong> {{agenda.nome_cliente}} <br /> </p>
+    <p><strong>Ponto de Coleta:</strong> {{agenda.nome_ponto}}</p>
+    <br />
+  <hr><br />
+  <!-- -->
+  <strong><ion-icon name="share-alt">&nbsp;&nbsp;
+    </ion-icon>Descrição da Amostra :&nbsp;<span class="asterisco">*</span></strong>
+    <ion-list>
+      <ion-item>
+        <ion-textarea placeholder="Amostra" [(ngModel)]="Cagua_amostra"></ion-textarea>
+      </ion-item>
+    </ion-list>
+
+    <strong><ion-icon name="share-alt">&nbsp;&nbsp;</ion-icon>Fornecedor: </strong>
+    <ion-list>
+      <ion-item>
+        <ion-input type="text" placeholder="Nome do Fornecedor" [(ngModel)]="Cagua_fornecedor"></ion-input>
+      </ion-item>
+    </ion-list>
+
+    <strong><ion-icon name="share-alt">&nbsp;&nbsp;</ion-icon>Data de Envase:</strong>
+    <ion-list>
+      <ion-item>
+        <ion-input type="datetime-local" [(ngModel)]="Cagua_data_envase"  (ionChange)="alterFieldEnvase($event)"></ion-input>
+      </ion-item>
+    </ion-list>
+
+
+    <strong><ion-icon name="share-alt">&nbsp;&nbsp;</ion-icon>Data de Fabricação:</strong>
+    <ion-list>
+      <ion-item>
+        <ion-input type="text" placeholder="Ex: 01/01/2018, Janeiro/2018" [(ngModel)]="Cagua_fabricacao"  (ionChange)="alterFieldFabricacao($event)"></ion-input>
+      </ion-item>
+    </ion-list>
+
+    <strong><ion-icon name="share-alt">&nbsp;&nbsp;</ion-icon>Data de Validade:</strong>
+    <ion-list>
+      <ion-item>
+        <ion-input type="text" placeholder="Ex: 01/01/2018, Janeiro/2018" placeholder="Ex: 01/01/2018, 180 dias" [(ngModel)]="Cagua_validade"></ion-input>
+      </ion-item>
+    </ion-list>
+
+    <strong><ion-icon name="share-alt">&nbsp;&nbsp;</ion-icon>Temperatura da amostra (°C):&nbsp;<span class="asterisco">*</span></strong>
+    <ion-list>
+      <ion-item>
+        <ion-input type="number" placeholder="Ex: 12, 5, -10" [(ngModel)]="Cagua_tempamostra"></ion-input>
+      </ion-item>
+    </ion-list>
+
+    <strong><ion-icon name="share-alt">&nbsp;&nbsp;</ion-icon>Temp. do branco de temp. na coleta (°C)</strong>
+    <ion-list>
+      <ion-item>
+        <ion-input type="number" placeholder="Ex: 12, 5, -10" [(ngModel)]="Ctemp_branco"></ion-input>
+      </ion-item>
+    </ion-list>
+
+  <strong><ion-icon name="share-alt">&nbsp;&nbsp;</ion-icon>Características do dosador de cloro:</strong>
+  <ion-list>
+    <ion-item>
+      <ion-label class="mini">Dosador de cloro</ion-label>
+      <ion-select [(ngModel)]="Cagua_dosador" multiple="false" okText="OK" cancelText="Cancelar">
+        <ion-option *ngFor="let item of dosador" [value]="item.id" text-wrap>{{ item.nome }}</ion-option>
+      </ion-select>
+    </ion-item>
+    <ion-item *ngIf="Cagua_dosador == 0">
+      <ion-label class="mini">Outro</ion-label>
+      <ion-input type="text" [(ngModel)]="Cagua_dosadorOutro"></ion-input>
+    </ion-item>
+  </ion-list>
+
+  <hr /><br/>
+
+  <strong *ngIf="Cagua_dosador == 'COM CLORO'"><ion-icon name="share-alt">&nbsp;&nbsp;</ion-icon>Cloro Residual Livre:</strong>
+    <ion-list *ngIf="Cagua_dosador == 'COM CLORO'">
+      <ion-item>
+        <ion-label class="mini">Cloro Livre</ion-label>
+        <ion-input type="number" [(ngModel)]="Cagua_clorolivre"></ion-input>
+      </ion-item>
+    </ion-list>
+
+
+  <strong><ion-icon name="share-alt">&nbsp;&nbsp;</ion-icon>Procedência:</strong>
+  <ion-list>
+    <ion-item>
+      <ion-label class="mini">Procedência</ion-label>
+      <ion-select [(ngModel)]="Cagua_procedencia" multiple="false" okText="OK" cancelText="Cancelar">
+        <ion-option *ngFor="let item of procedencia" [value]="item.id" text-wrap>{{ item.nome }}</ion-option>
+      </ion-select>
+    </ion-item>
+    <ion-item *ngIf="Cagua_procedencia == 0">
+      <ion-label class="mini">Outra</ion-label>
+      <ion-input type="text" [(ngModel)]="Cagua_procedenciaOutro"></ion-input>
+    </ion-item>
+  </ion-list>
+
+  <hr *ngIf="Cagua_procedencia != 0" /><br/>
+
+  <strong><ion-icon name="share-alt">&nbsp;&nbsp;</ion-icon>Tratamento:</strong>
+  <ion-list>
+    <ion-item>
+      <ion-label class="mini">Tratamento</ion-label>
+      <ion-select [(ngModel)]="Cagua_tratamento" multiple="false" okText="OK" cancelText="Cancelar" >
+        <ion-option *ngFor="let item of tratamento" [value]="item.id" text-wrap>{{ item.nome }}</ion-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item *ngIf="Cagua_tratamento == 0">
+      <ion-label class="mini">Outro:</ion-label>
+      <ion-input type="text" [(ngModel)]="Cagua_tratamentoOutro"></ion-input>
+    </ion-item>
+  </ion-list>
+
+  <hr *ngIf="Cagua_tratamento != 0 " /><br/>
+
+  <strong><ion-icon name="share-alt">&nbsp;&nbsp;</ion-icon>Utilização:</strong>
+  <ion-list>
+    <ion-item>
+      <ion-label class="mini">Uma amostra de</ion-label>
+      <ion-select [(ngModel)]="Cutilizacao" multiple="false" okText="OK" cancelText="Cancelar">
+        <ion-option text-wrap *ngFor="let item of utilizacao" [value]="item.id">{{ item.nome }}</ion-option>
+      </ion-select>
+    </ion-item>
+    <ion-item *ngIf="Cutilizacao == 0">
+      <ion-label>Outra</ion-label>
+      <ion-input type="text" [(ngModel)]="CutilizacaoOutro"></ion-input>
+    </ion-item>
+  </ion-list>
+
+  <hr *ngIf="Cutilizacao != 0 " /><br/>
+
+  <strong><ion-icon name="share-alt">&nbsp;&nbsp;</ion-icon>Observações : </strong>
+  <ion-list>
+  <ion-item>
+    <ion-textarea placeholder="Observações...." [(ngModel)]="Cagua_obs"></ion-textarea>
+  </ion-item>
+</ion-list>
+
+<strong><ion-icon name="share-alt">&nbsp;&nbsp;</ion-icon>Data da amostragem : &nbsp;<span class="asterisco">*</span> </strong>
+    <ion-list>
+      <ion-item>
+          <ion-input type="datetime-local" [(ngModel)]="dataDaColeta"></ion-input>
+        </ion-item>
+    </ion-list>
+
+<strong><ion-icon name="share-alt">&nbsp;&nbsp;</ion-icon>Identificador de Amostra : &nbsp;<span class="asterisco">*</span> </strong>
+    <ion-list>
+      <ion-item>
+        <ion-input type="number" placeholder="Ex: 1,2,3,4..." [(ngModel)]="Cagua_id_amostra"></ion-input>
+      </ion-item>
+    </ion-list>
+
+  <button ion-button full round (click)="Salvar();" *ngIf="DataColetado == 0"> <ion-icon name="checkmark-circle">&nbsp;&nbsp;</ion-icon>Salvar</button>
+
+  <button ion-button full round *ngIf="DataColetado == 1" (click)="update(idArray);"><ion-icon name="refresh">&nbsp;&nbsp;</ion-icon>Salvar</button>
+
+
+</ion-content>

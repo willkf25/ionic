@@ -1,0 +1,35 @@
+<ion-header>
+
+  <ion-navbar>
+    <button ion-button icon-only menuToggle>
+          <ion-icon name="menu"></ion-icon>
+    </button>
+
+    <ion-title>Lista de Matrizes</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+  <div>
+    <p><ion-icon name="person">&nbsp;&nbsp;</ion-icon><strong>COLETOR:</strong>  {{ name_coletor }} </p>
+    <p><ion-icon name="briefcase">&nbsp;&nbsp;</ion-icon><strong>CLIENTE:</strong>  {{ name_client }} </p>
+    <p><ion-icon name="flask">&nbsp;&nbsp;</ion-icon><strong>TIPO DE COLETA:</strong> {{ type_name }} </p>
+    <br />
+    <hr style="height:2px; border:none; color:#000; background-color:#000; margin-top: 0px; margin-bottom: 0px;"/>
+    <br/>
+  </div>
+
+
+  <ion-list>
+      <ion-item *ngFor="let cl of list_collect" (click)="ChoseClient(cl)" text-wrap style="padding-top: 10px;">
+        {{cl.matriz}}
+        <h3 *ngIf="cl.collected == 1"><ion-icon ios="ios-checkmark-circle" md="md-checkmark-circle"></ion-icon></h3>
+      </ion-item>
+  </ion-list>
+
+
+
+</ion-content>

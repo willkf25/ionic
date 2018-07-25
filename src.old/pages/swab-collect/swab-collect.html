@@ -1,0 +1,166 @@
+
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Coleta SWAB</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+    <p><strong>A coleta de Swab e Lavagem de Embalagem é do cliente {{agenda.nome_cliente}} - {{agenda.nome_ponto}}</strong></p>
+
+    <strong>1) Amostra</strong>
+    <ion-list>
+      <ion-item>
+        <ion-textarea placeholder="Amostra" [(ngModel)]="Cswab_amostra"></ion-textarea>
+      </ion-item>
+    </ion-list>
+
+    <strong>2) Qual lote pertence ?</strong>
+    <ion-list>
+      <ion-item>
+        <ion-label>Lote *</ion-label>
+        <ion-input type="number" [(ngModel)]="Cswab_lote"></ion-input>
+      </ion-item>
+    </ion-list>
+
+    <strong>3) Qual a validade ?</strong>
+    <ion-list>
+      <ion-item>
+        <ion-label>Validade *</ion-label>
+        <ion-input type="text" [(ngModel)]="Cswab_validade"></ion-input>
+      </ion-item>
+    </ion-list>
+    <!--
+    <strong>12) Temperatura do branco de temperatura ?</strong>
+    <ion-list>
+      <ion-item>
+        <ion-label>Temperatura *</ion-label>
+        <ion-input type="text" [(ngModel)]="Cswab_temp_branco"></ion-input>
+      </ion-item>
+    </ion-list>-->
+
+    <strong>4) Temperatura do branco de temperatura na coleta (°C)</strong>
+      <ion-list>
+        <ion-item>
+          <ion-label>Temperatura</ion-label>
+          <ion-input type="number" [(ngModel)]="Ctemp_branco"></ion-input>
+        </ion-item>
+      </ion-list>
+
+      <strong>5) Qual a análise clínica?</strong>
+      <ion-list>
+        <ion-item>
+          <ion-label>Análise</ion-label>
+          <ion-select [(ngModel)]="Cswab_clinica" multiple="false" okText="OK" cancelText="Cancelar">
+            <ion-option *ngFor="let item of analise" [value]="item.id" text-wrap>{{ item.nome }}</ion-option>
+          </ion-select>
+        </ion-item>
+        <ion-item  *ngIf="Cswab_clinica == 0">
+          <ion-label>Outros</ion-label>
+          <ion-input type="text" [(ngModel)]="Cswab_clinicaOutros"></ion-input>
+        </ion-item>
+      </ion-list>
+      <hr style="height:1px; border:none; color:#CCC; background-color:#CCC; margin-top: 0px; margin-bottom: 0px;"/>
+
+      <strong>6) Como está a higienização?</strong>
+      <ion-list>
+        <ion-item>
+          <ion-label>Higieniziação</ion-label>
+          <ion-select [(ngModel)]="Cswab_higienizacao" multiple="false" okText="OK" cancelText="Cancelar">
+            <ion-option *ngFor="let item of higiniziacao" [value]="item.id" text-wrap>{{ item.nome }}</ion-option>
+          </ion-select>
+        </ion-item>
+      </ion-list>
+      <hr style="height:1px; border:none; color:#CCC; background-color:#CCC; margin-top: 0px; margin-bottom: 0px;"/>
+
+      <strong>7) Qual delimitador do Swab?</strong>
+      <ion-list>
+        <ion-item>
+          <ion-label>tem delimitador?</ion-label>
+          <ion-select [(ngModel)]="Cswab_area" multiple="false" okText="OK" cancelText="Cancelar">
+            <ion-option *ngFor="let item of area" [value]="item.id" text-wrap>{{ item.nome }}</ion-option>
+          </ion-select>
+        </ion-item>
+        <ion-item  *ngIf="Cswab_area == 0">
+          <ion-label>Outros</ion-label>
+          <ion-input type="text" [(ngModel)]="Cswab_areaOutros"></ion-input>
+        </ion-item>
+      </ion-list>
+      <hr style="height:1px; border:none; color:#CCC; background-color:#CCC; margin-top: 0px; margin-bottom: 0px;"/>
+
+      <strong>8) Qual a hora do início da coleta ?</strong>
+      <ion-list>
+        <ion-item>
+          <ion-label>Hora da coleta</ion-label>
+          <ion-input type="time" [(ngModel)]="Cswab_inicio"></ion-input>
+        </ion-item>
+      </ion-list>
+
+      <strong>9) Qual o tempo da coleta ?</strong>
+      <ion-list>
+        <ion-item>
+          <ion-label>Em minutos</ion-label>
+          <!--<ion-input type="number" [(ngModel)]="Cswab_tempo"></ion-input>-->
+          <ion-select [(ngModel)]="Cswab_tempo" multiple="false" okText="OK" cancelText="Cancelar">
+            <ion-option value="15 min" text-wrap>15 min</ion-option>
+            <ion-option value="30 min" text-wrap>30 min</ion-option>
+            <ion-option value="02 horas" text-wrap>02 horas</ion-option>
+            <ion-option value="04 horas" text-wrap>04 horas</ion-option>
+          </ion-select>
+        </ion-item>
+      </ion-list>
+      <hr /> <br />
+
+      <!--<strong>10) Qual a vazão ?</strong>
+      <ion-list>
+        <ion-item>
+          <ion-label>L/min.</ion-label>
+          <ion-input type="number" [(ngModel)]="Cswab_vazao"></ion-input>
+        </ion-item>
+      </ion-list> -->
+
+      <strong>10) Qual a identificação da placa ?</strong>
+      <ion-list>
+        <ion-item>
+          <ion-label>Identificação</ion-label>
+          <ion-input type="text" [(ngModel)]="Cswab_placa"></ion-input>
+        </ion-item>
+      </ion-list>
+
+
+
+    <strong>11) Observações</strong>
+    <ion-list>
+      <ion-item>
+        <ion-label></ion-label>
+        <ion-textarea placeholder="Observação" [(ngModel)]="obs"></ion-textarea>
+      </ion-item>
+    </ion-list>
+
+    <strong>12) Data da amostra</strong>
+    <ion-list>
+      <ion-item>
+        <ion-label>Data</ion-label>
+          <ion-input type="datetime-local" [(ngModel)]="dataDaColeta"></ion-input>
+        </ion-item>
+    </ion-list>
+
+    <strong>13) Identificador de Amostra</strong>
+    <ion-list>
+      <ion-item>
+        <ion-label></ion-label>
+        <ion-input type="number" [(ngModel)]="Cswab_idAmostra"></ion-input>
+      </ion-item>
+    </ion-list>
+
+
+
+      <button ion-button full (click)="Save();" *ngIf="DataColetado == 0"><ion-icon name="checkmark-circle">&nbsp;&nbsp;</ion-icon>Salvar</button>
+
+      <button ion-button full *ngIf="DataColetado == 1" (click)="update(idArray);"><ion-icon name="refresh">&nbsp;&nbsp;</ion-icon>Salvar</button>
+
+</ion-content>

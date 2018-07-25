@@ -1,0 +1,151 @@
+
+<ion-header>
+
+  <ion-navbar>
+    <ion-title><ion-icon name="flask">&nbsp;&nbsp;</ion-icon>Coleta de SWAB</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+    <p><strong>Cliente :</strong> {{agenda.nome_cliente}} <br /></p>
+    <p><strong>Ponto de Coleta :</strong> {{agenda.nome_ponto}}</p>
+    <br />
+    <hr><br />
+
+    <strong><ion-icon name="share-alt">&nbsp;&nbsp;
+    </ion-icon>Descrição da Amostra :&nbsp;<span class="asterisco">*</span></strong>
+    <ion-list>
+      <ion-item>
+        <ion-textarea placeholder="Amostra" [(ngModel)]="Cswab_amostra"></ion-textarea>
+      </ion-item>
+    </ion-list>
+
+    <strong><ion-icon name="share-alt">&nbsp;&nbsp;</ion-icon>Lote :&nbsp;<span class="asterisco">*</span></strong>
+    <ion-list>
+      <ion-item>
+        <ion-input type="number" placeholder="Ex: 123456"[(ngModel)]="Cswab_lote"></ion-input>
+      </ion-item>
+    </ion-list>
+
+    <strong><ion-icon name="share-alt">&nbsp;&nbsp;</ion-icon>Data de Validade :&nbsp;<span class="asterisco">*</span></strong>
+    <ion-list>
+      <ion-item>
+        <ion-input type="text" placeholder="Ex: 01/01/2018, Janeiro/2018" [(ngModel)]="Cswab_validade"></ion-input>
+      </ion-item>
+    </ion-list>
+
+    <strong><ion-icon name="share-alt">&nbsp;&nbsp;</ion-icon> Temp. do branco de temp. na coleta (°C)</strong>
+      <ion-list>
+        <ion-item>
+          <ion-input type="number" placeholder="Ex: 12, 5, -10" [(ngModel)]="Ctemp_branco"></ion-input>
+        </ion-item>
+      </ion-list>
+
+      <strong><ion-icon name="share-alt">&nbsp;&nbsp;</ion-icon>Análise Clínica:</strong>
+      <ion-list>
+        <ion-item>
+          <ion-label class="mini">Análise</ion-label>
+          <ion-select [(ngModel)]="Cswab_clinica" multiple="false" okText="OK" cancelText="Cancelar">
+            <ion-option *ngFor="let item of analise" [value]="item.id" text-wrap>{{ item.nome }}</ion-option>
+          </ion-select>
+        </ion-item>
+        <ion-item  *ngIf="Cswab_clinica == 0">
+          <ion-label class="mini">Outros</ion-label>
+          <ion-input type="text" [(ngModel)]="Cswab_clinicaOutros"></ion-input>
+        </ion-item>
+      </ion-list>
+      <hr /><br/>
+      <strong><ion-icon name="share-alt">&nbsp;&nbsp;</ion-icon>Higienização:</strong>
+      <ion-list>
+        <ion-item>
+          <ion-label class="mini">Higieniziação</ion-label>
+          <ion-select [(ngModel)]="Cswab_higienizacao" multiple="false" okText="OK" cancelText="Cancelar">
+            <ion-option *ngFor="let item of higiniziacao" [value]="item.id" text-wrap>{{ item.nome }}</ion-option>
+          </ion-select>
+        </ion-item>
+      </ion-list>
+      <hr /><br/>
+      <strong><ion-icon name="share-alt">&nbsp;&nbsp;</ion-icon>Uso do Delimitador:</strong>
+      <ion-list>
+        <ion-item>
+          <ion-label class="mini">Com Delimitador?</ion-label>
+          <ion-select [(ngModel)]="Cswab_area" multiple="false" okText="OK" cancelText="Cancelar">
+            <ion-option *ngFor="let item of area" [value]="item.id" text-wrap>{{ item.nome }}</ion-option>
+          </ion-select>
+        </ion-item>
+        <ion-item  *ngIf="Cswab_area == 0">
+          <ion-label class="mini" >Outros:</ion-label>
+          <ion-input type="text" [(ngModel)]="Cswab_areaOutros"></ion-input>
+        </ion-item>
+      </ion-list>
+      <hr /><br/>
+      <strong><ion-icon name="share-alt">&nbsp;&nbsp;</ion-icon>Hora de Início da Coleta:</strong>
+      <ion-list>
+        <ion-item>
+          <ion-input type="time" [(ngModel)]="Cswab_inicio"></ion-input>
+        </ion-item>
+      </ion-list>
+
+      <strong><ion-icon name="share-alt">&nbsp;&nbsp;</ion-icon>Tempo de Coleta:</strong>
+      <ion-list>
+        <ion-item>
+          <ion-label class="mini">Em minutos</ion-label>
+          <!--<ion-input type="number" [(ngModel)]="Cswab_tempo"></ion-input>-->
+          <ion-select [(ngModel)]="Cswab_tempo" multiple="false" okText="OK" cancelText="Cancelar">
+            <ion-option value="15 min" text-wrap>15 min</ion-option>
+            <ion-option value="30 min" text-wrap>30 min</ion-option>
+            <ion-option value="02 horas" text-wrap>02 horas</ion-option>
+            <ion-option value="04 horas" text-wrap>04 horas</ion-option>
+          </ion-select>
+        </ion-item>
+      </ion-list>
+      <hr /> <br />
+
+      <!--<strong>10) Qual a vazão ?</strong>
+      <ion-list>
+        <ion-item>
+          <ion-label>L/min.</ion-label>
+          <ion-input type="number" [(ngModel)]="Cswab_vazao"></ion-input>
+        </ion-item>
+      </ion-list> -->
+
+      <strong><ion-icon name="share-alt">&nbsp;&nbsp;</ion-icon>Identificação da Placa: </strong>
+      <ion-list>
+        <ion-item>
+          <ion-input type="text" placeholder="informe a ident. da placa" [(ngModel)]="Cswab_placa"></ion-input>
+        </ion-item>
+      </ion-list>
+
+
+
+    <strong><ion-icon name="share-alt">&nbsp;&nbsp;</ion-icon>Observações:</strong>
+    <ion-list>
+      <ion-item>
+        <ion-textarea placeholder="Observações..." [(ngModel)]="obs"></ion-textarea>
+      </ion-item>
+    </ion-list>
+
+    <strong><ion-icon name="share-alt">&nbsp;&nbsp;</ion-icon>Data da Amostragem: &nbsp;<span class="asterisco">*</span></strong>
+    <ion-list>
+      <ion-item>
+          <ion-input type="datetime-local" [(ngModel)]="dataDaColeta"></ion-input>
+        </ion-item>
+    </ion-list>
+
+    <strong><ion-icon name="share-alt">&nbsp;&nbsp;</ion-icon>Identificador da Amostra: &nbsp;<span class="asterisco">*</span></strong>
+    <ion-list>
+      <ion-item>
+        <ion-input type="number" placeholder="Ex: 1,2,3,4..." [(ngModel)]="Cswab_idAmostra"></ion-input>
+      </ion-item>
+    </ion-list>
+
+
+
+      <button ion-button full round (click)="Save();" *ngIf="DataColetado == 0"><ion-icon name="checkmark-circle">&nbsp;&nbsp;</ion-icon>Salvar</button>
+
+      <button ion-button full round *ngIf="DataColetado == 1" (click)="update(idArray);"><ion-icon name="refresh">&nbsp;&nbsp;</ion-icon>Salvar</button>
+
+</ion-content>

@@ -1,0 +1,18 @@
+
+<ion-header>
+
+  <ion-navbar>
+    <ion-title><ion-icon ios="ios-contacts" md="md-contacts"></ion-icon>&nbsp;Escolher Coletor</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<br/>
+<ion-content padding>
+
+  <ion-list>
+    <ion-item *ngFor="let opr of listOperator" (click)="ChoseOperator(opr.id, opr.nome)"><ion-icon name="person"></ion-icon>&nbsp;&nbsp;{{opr.nome}}</ion-item>
+  </ion-list>
+  <br/>
+  <button ion-button full round class="btAcessar btError"  (click)="LogOut ();" ><ion-icon name="md-log-out"></ion-icon>&nbsp;Logout</button>
+</ion-content>
